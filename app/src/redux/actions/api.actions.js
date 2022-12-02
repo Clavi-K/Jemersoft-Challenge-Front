@@ -7,7 +7,7 @@ export const REMOVE_POKEMON = "REMOVE_POKEMON"
 export function getPokemons() {
 
     return async (dispatch) => {
-        const { data } = await axios.get("http://localhost:8082/pokemons/getAll")
+        const { data } = await axios.get("https://jemersoft-challenge-back-production.up.railway.app/pokemons/getAll")
         return dispatch({ type: GET_POKEMONS, payload: data })
     }
 
@@ -17,7 +17,7 @@ export function getPokemons() {
 export function getPokemon(id) {
 
     return async (dispatch) => {
-        const { data } = await axios.get(`http://localhost:8082/pokemons/${id}`)
+        const { data } = await axios.get(`https://jemersoft-challenge-back-production.up.railway.app/pokemons/${id}`)
         return dispatch({ type: GET_POKEMON, payload: data })
     }
 
