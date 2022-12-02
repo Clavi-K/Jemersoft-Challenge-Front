@@ -3,24 +3,36 @@ import { useDispatch, useSelector } from "react-redux"
 import { Link } from "react-router-dom"
 
 import { getPokemons } from '../../redux/actions/api.actions'
+import Pagination from '../Pagination/Pagination'
 
 const Pokemons = () => {
 
     const dispatch = useDispatch()
-    const pokemons = useSelector(state => state.pokemons)
+    let pokemons = useSelector(state => state.pokemons)
 
     const [search, setSearch] = useState("")
-
-    const searchOnChange = (e) => {
-        setSearch(e.target.value)
-    }
+    const [currentPage, setCurrentPage] = useState(1)
+    const [postsPerPage, setPostsPerPage] = useState(10)
 
     useEffect(() => {
-        console.log(search)
         if (!pokemons || !pokemons.length) {
             dispatch(getPokemons())
         }
     }, [search])
+
+    const searchOnChange = (e) => {
+        setSearch(e.target.value)
+        setCurrentPage(1)
+    }
+
+    if (pokemons && pokemons.length) {
+        pokemons = pokemonSearch(search, pokemons)
+    }
+
+    const lasPostIndex = currentPage * postsPerPage
+    const firstPostIndex = lasPostIndex - postsPerPage
+
+    const currentPokemons = pokemons && pokemons.length ? pokemons.slice(firstPostIndex, lasPostIndex) : null
 
     return (
         <section>
@@ -33,12 +45,14 @@ const Pokemons = () => {
                 {
                     pokemons && pokemons.length ?
 
-                        pokemonRender(pokemonSearch(search, pokemons))
+                        pokemonRender(currentPokemons)
 
                         :
 
                         null
                 }
+
+                <Pagination totalPosts={pokemons ? pokemons.length : 0} postsPerPage={postsPerPage} setCurrentPage={setCurrentPage} />
             </div>
 
         </section>
