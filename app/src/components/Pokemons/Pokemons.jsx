@@ -13,7 +13,7 @@ const Pokemons = () => {
         if (!pokemons || !pokemons.length) {
             dispatch(getPokemons())
         }
-    })
+    }, [])
 
     return (
         <section>
@@ -45,7 +45,7 @@ function pokemonRender(pokemons) {
                 <h2>Types:</h2>
                 <ul>
                     {
-                        p.types.map(t => <li key={this}>{t}</li>)
+                        p.types.map(t => <li key={t}>{t}</li>)
                     }
                 </ul>
             </div>
