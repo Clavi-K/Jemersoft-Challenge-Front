@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from "react-redux"
-import {Link} from "react-router-dom"
+import { Link } from "react-router-dom"
 
 import { getPokemons } from '../../redux/actions/api.actions'
 
@@ -9,20 +9,31 @@ const Pokemons = () => {
     const dispatch = useDispatch()
     const pokemons = useSelector(state => state.pokemons)
 
+    const [search, setSearch] = useState("")
+
+    const searchOnChange = (e) => {
+        setSearch(e.target.value)
+    }
+
     useEffect(() => {
+        console.log(search)
         if (!pokemons || !pokemons.length) {
             dispatch(getPokemons())
         }
-    }, [])
+    }, [search])
 
     return (
         <section>
 
             <div>
+                <h1>Jemersoft Pokemon App</h1>
+                <input type="text" value={search.param} name="search" id="search" onChange={searchOnChange} />
+            </div>
+            <div>
                 {
                     pokemons && pokemons.length ?
 
-                        pokemonRender(pokemons)
+                        pokemonRender(pokemonSearch(search, pokemons))
 
                         :
 
@@ -65,6 +76,11 @@ function pokemonRender(pokemons) {
 
         </article>)
 
+}
+
+function pokemonSearch(input, pokemons) {
+    if (input.trim(" ") === "") return pokemons
+    return pokemons.filter(p => p.name.includes(input))
 }
 
 export default Pokemons
