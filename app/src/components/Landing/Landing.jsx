@@ -16,8 +16,8 @@ const Landing = () => {
 
     return (
         <section>
-            <div className={`${s.title}`} >Pokemon App Landing</div>
-            <Link className={`${s.button}`} to="/pokemons">Press Me</Link>
+            <div className={`${s.title}`} >Jemersoft Pokemon App</div>
+            <Link className={`${s.button}`} to="/pokemons">Click Me</Link>
         </section>
     )
 }
