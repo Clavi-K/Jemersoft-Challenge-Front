@@ -14,8 +14,6 @@ const Landing = () => {
         if(!pokemons || pokemons.length) dispatch(getPokemons())
     }, [])
 
-    console.log(pokemons)
-
     return (
         <section>
             <div className={`${s.title}`} >Pokemon App Landing</div>
