@@ -32,7 +32,6 @@ const Pokemons = () => {
     /* ----- DISPATCH STATE ----- */
 
     useEffect(() => {
-        console.log(maxIndex, pokemons.length)
         dispatch(getPokemons(maxIndex, pokemons.length))
     }, [maxIndex])
 
@@ -76,8 +75,6 @@ const Pokemons = () => {
 
     /* ---------- */
 
-    console.log(pokemons)
-
     return (
         <section>
 
@@ -103,10 +100,16 @@ const Pokemons = () => {
 
             </div>
 
-            <div>
-                <button name='-' onClick={paginationOnClick}>⬅</button>
-                <button name='+' onClick={paginationOnClick}>➡</button>
-            </div>
+            {
+                search.trim(" ") === "" ?
+                    <div className={`${s.buttonContainer}`}>
+                        <button className={`${s.button} ${s.pagButton}`} name='-' onClick={paginationOnClick}>⬅</button>
+                        <button className={`${s.button} ${s.pagButton}`} name='+' onClick={paginationOnClick}>➡</button>
+                    </div>
+                    :
+                    null
+
+            }
 
         </section>
     )
