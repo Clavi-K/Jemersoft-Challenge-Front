@@ -20,6 +20,14 @@ body {
   color: var(--primary-color)
 }
 
+hr {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 3px solid var(--primary-color);
+  margin: 1em 0;
+  padding: 0;
+}
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',

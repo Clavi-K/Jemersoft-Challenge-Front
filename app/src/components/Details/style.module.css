@@ -1,0 +1,60 @@
+.image {
+    width: 25rem;
+    margin-left: 4rem;
+}
+
+.title{
+    font-size: 64px;
+    margin: 0;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    margin-top: 1rem;
+}
+
+.text {
+    margin: 2rem 4rem;
+}
+
+.stats {
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
+
+.list {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.element {
+    margin: 0.3rem 1rem;
+}
+
+.statTitle {
+    text-align: center;
+}
+
+.weight {
+    margin: 2rem 0rem;
+}
+
+.statCard {
+    border: 1px solid var(--primary-color);
+    border-radius: 1.2rem;
+    margin: 1rem 2.5rem;
+}
+
+.backButton {
+    text-decoration: none;
+    font-weight: 300;
+    font-size: 24px;
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+    border-radius: 1rem;
+    padding: .5rem 1rem;
+    position: absolute;
+    top: 1%;
+}

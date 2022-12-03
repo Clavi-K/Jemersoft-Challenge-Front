@@ -1,0 +1,79 @@
+.navbar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.searchbar {
+    border: 1px solid var(--primary-color);
+    border-radius: 1.2rem;
+    background: none;
+    margin-top: 1.5rem;
+    margin-bottom: .5rem;
+    color: var(--primary-color);
+    width: 15%;
+    text-align: center;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    width: 20%;
+    text-align: center;
+    border: 1px solid var(--primary-color);
+    padding: .5rem;
+    border-radius: 1.2rem;
+    margin: .3rem;
+}
+
+.image {
+    margin: auto;
+    width: 60%;
+}
+
+.title {
+    text-align: center;
+    font-size: 32px;
+    margin-top: .1rem;
+    margin-bottom: .1rem;
+}
+
+.info h2 {
+    font-weight: 500;
+    font-size: 20px;
+    margin-bottom: .1rem;
+}
+
+.info ul {
+    margin: auto;
+    font-weight: 100;
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: .1rem;
+}
+
+.info li {
+    margin: .1rem 1rem;
+}
+
+.button {
+    text-decoration: none;
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+    border-radius: 1rem;
+    margin: .1rem 3rem;
+    padding-bottom: .2rem;
+}
+
+.button:hover {
+    transition: .3s;
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+}
