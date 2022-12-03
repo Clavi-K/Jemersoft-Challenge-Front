@@ -7,9 +7,10 @@ export const REMOVE_POKEMON = "REMOVE_POKEMON"
 export function getPokemons(maxIndex, length) {
 
     return async (dispatch) => {
+        
         if (maxIndex < 10) return
         if (maxIndex <= length) return
-        console.log("a")
+
         const { data } = await axios.get(`https://jemersoft-challenge-back-production.up.railway.app/pokemons/getTen/${maxIndex}`)
         return dispatch({ type: GET_POKEMONS, payload: data })
     }

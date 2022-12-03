@@ -64,6 +64,7 @@
 }
 
 .button {
+    background: none;
     text-decoration: none;
     color: var(--primary-color);
     border: 1px solid var(--primary-color);
@@ -82,4 +83,16 @@
     position: absolute;
     top: 50%;
     left: 50%;
+}
+
+.pagButton {
+    font-size: 18px;
+}
+
+.buttonContainer {
+    width: 70%;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
 }
