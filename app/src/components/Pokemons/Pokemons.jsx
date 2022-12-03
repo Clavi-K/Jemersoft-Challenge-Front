@@ -8,7 +8,6 @@ import { BallTriangle } from "react-loader-spinner"
 import s from "./style.module.css"
 import { capitalize } from '../../utils'
 import { getPokemons } from '../../redux/actions/api.actions'
-import Pagination from '../Pagination/Pagination'
 
 /* ---------- */
 
@@ -21,23 +20,20 @@ const Pokemons = () => {
 
     /* ---------- */
 
+
     /* ----- LOCAL STATES ----- */
 
     const [search, setSearch] = useState("")
-    const [currentPage, setCurrentPage] = useState(1)
+    const [maxIndex, setMaxIndex] = useState(10)
 
     /* ---------- */
 
 
-    const postsPerPage = 10
-
     /* ----- DISPATCH STATE ----- */
 
     useEffect(() => {
-        if (!pokemons || !pokemons.length) {
-            dispatch(getPokemons())
-        }
-    }, [search])
+        dispatch(getPokemons(maxIndex, pokemons.length))
+    }, [maxIndex])
 
     /* ---------- */
 
@@ -45,7 +41,6 @@ const Pokemons = () => {
 
     const searchOnChange = (e) => {
         setSearch(e.target.value)
-        setCurrentPage(1)
     }
 
     /* ---------- */
@@ -58,12 +53,25 @@ const Pokemons = () => {
 
     /* ---------- */
 
+    /* ----- PAGINATION LISTENER ----- */
+
+    const paginationOnClick = e => {
+
+        if (e.target.name === "+") {
+            if (maxIndex < 1144) setMaxIndex((curr) => { return curr + 10 })
+        } else {
+            if (maxIndex > 10) setMaxIndex((curr) => { return curr - 10 })
+        }
+    }
+
+    /* ---------- */
+
     /* ----- PAGINATION FILTER ----- */
 
-    const lasPostIndex = currentPage * postsPerPage
-    const firstPostIndex = lasPostIndex - postsPerPage
+    const upperLimit = maxIndex <= pokemons.length ? maxIndex : pokemons.length
+    const lowerLimit = upperLimit - 10 > 0 ? upperLimit - 10 : 0
 
-    const currentPokemons = pokemons && pokemons.length ? pokemons.slice(firstPostIndex, lasPostIndex) : null
+    const currentPokemons = pokemons && pokemons.length ? pokemons.slice(lowerLimit, upperLimit) : null
 
     /* ---------- */
 
@@ -79,20 +87,29 @@ const Pokemons = () => {
 
             <div className={`${s.container}`}>
                 {
-                    pokemons && pokemons.length ?
+                    currentPokemons && currentPokemons.length ?
 
                         pokemonRender(currentPokemons)
 
                         :
 
-                    <div className={`${s.loader}`}>
-                        <BallTriangle color="#d4b500"/>
-                    </div>
+                        <div className={`${s.loader}`}>
+                            <BallTriangle color="#d4b500" />
+                        </div>
                 }
 
             </div>
 
-            <Pagination totalPosts={pokemons ? pokemons.length : 0} postsPerPage={postsPerPage} setCurrentPage={setCurrentPage} />
+            {
+                search.trim(" ") === "" ?
+                    <div className={`${s.buttonContainer}`}>
+                        <button className={`${s.button} ${s.pagButton}`} name='-' onClick={paginationOnClick}>⬅</button>
+                        <button className={`${s.button} ${s.pagButton}`} name='+' onClick={paginationOnClick}>➡</button>
+                    </div>
+                    :
+                    null
+
+            }
 
         </section>
     )
