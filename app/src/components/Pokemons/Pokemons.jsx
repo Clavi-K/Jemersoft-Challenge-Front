@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { Link } from "react-router-dom"
 
 import s from "./style.module.css"
+import { capitalize } from '../../utils'
 import { getPokemons } from '../../redux/actions/api.actions'
 import Pagination from '../Pagination/Pagination'
 
@@ -101,13 +102,13 @@ function pokemonRender(pokemons) {
     return pokemons.map(p =>
         <article className={`${s.card}`} key={p.id}>
             <img className={`${s.image}`} src={p.img} alt={p.name} />
-            <h1 className={`${s.title}`}>{p.name}</h1>
+            <h1 className={`${s.title}`}>{capitalize(p.name)}</h1>
 
             <div className={`${s.info}`}>
                 <h2>Types:</h2>
                 <ul>
                     {
-                        p.types.map(t => <li key={t}>{t}</li>)
+                        p.types.map(t => <li key={t}>{capitalize(t)}</li>)
                     }
                 </ul>
             </div>
@@ -116,7 +117,7 @@ function pokemonRender(pokemons) {
                 <h2>Abilities:</h2>
                 <ul>
                     {
-                        p.abilities.map(a => <li key={a}>{a}</li>)
+                        p.abilities.map(a => <li key={a}>{capitalize(a)}</li>)
                     }
                 </ul>
             </div>

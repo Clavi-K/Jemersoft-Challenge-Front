@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import { getPokemon, removePokemon } from "../../redux/actions/api.actions"
 import s from "./style.module.css"
+import { capitalize } from '../../utils'
 
 /* ---------- */
 
@@ -44,7 +45,7 @@ const Details = () => {
                             <img className={`${s.image}`} src={pokemon.img} alt={pokemon.name} />
 
                             <div className={`${s.text}`}>
-                                <h1 className={`${s.title}`}>{pokemon.name}</h1>
+                                <h1 className={`${s.title}`}>{capitalize(pokemon.name)}</h1>
                                 <div>
                                     <h2>Description [ES]:</h2>
                                     <p>{pokemon.description}</p>
@@ -60,7 +61,7 @@ const Details = () => {
                                 <h2 className={`${s.statTitle}`}>Types:</h2>
                                 <ul className={`${s.list}`}>
                                     {
-                                        pokemon.types.map(t => <li className={`${s.element}`} key={t}>{t}</li>)
+                                        pokemon.types.map(t => <li className={`${s.element}`} key={t}>{capitalize(t)}</li>)
                                     }
                                 </ul>
                             </div>
@@ -70,7 +71,7 @@ const Details = () => {
                                 <h2 className={`${s.statTitle}`}>Abilities:</h2>
                                 <ul className={`${s.list}`}>
                                     {
-                                        pokemon.abilities.map(a => <li className={`${s.element}`} key={a}>{a}</li>)
+                                        pokemon.abilities.map(a => <li className={`${s.element}`} key={a}>{capitalize(a)}</li>)
                                     }
                                 </ul>
                             </div>
@@ -81,7 +82,7 @@ const Details = () => {
                             <h2 className={`${s.statTitle}`}>Moves:</h2>
                             <ul className={`${s.list}`}>
                                 {
-                                    pokemon.moves.map(m => <li className={`${s.element}`} key={m}>{m}</li>)
+                                    pokemon.moves.map(m => <li className={`${s.element}`} key={m}>{capitalize(m)}</li>)
                                 }
                             </ul>
                         </div>
