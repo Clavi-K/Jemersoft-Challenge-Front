@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from "react-redux"
 import { Link } from "react-router-dom"
+import { BallTriangle } from "react-loader-spinner"
 
 import s from "./style.module.css"
 import { capitalize } from '../../utils'
@@ -84,11 +85,13 @@ const Pokemons = () => {
 
                         :
 
-                        null
+                    <div className={`${s.loader}`}>
+                        <BallTriangle color="#d4b500"/>
+                    </div>
                 }
 
             </div>
-            
+
             <Pagination totalPosts={pokemons ? pokemons.length : 0} postsPerPage={postsPerPage} setCurrentPage={setCurrentPage} />
 
         </section>

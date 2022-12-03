@@ -3,7 +3,7 @@
     margin-left: 4rem;
 }
 
-.title{
+.title {
     font-size: 64px;
     margin: 0;
 }
@@ -57,4 +57,10 @@
     padding: .5rem 1rem;
     position: absolute;
     top: 1%;
+}
+
+.loader {
+    position: absolute;
+    top: 50%;
+    left: 50%;
 }

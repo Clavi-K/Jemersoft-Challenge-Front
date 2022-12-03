@@ -3,6 +3,7 @@
 import React, { useEffect } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
+import { BallTriangle } from "react-loader-spinner"
 
 import { getPokemon, removePokemon } from "../../redux/actions/api.actions"
 import s from "./style.module.css"
@@ -90,7 +91,9 @@ const Details = () => {
                     </article>
 
                     :
-                    null
+                    <div className={`${s.loader}`}>
+                        <BallTriangle color="#d4b500" />
+                    </div>
             }
         </section>
     )
